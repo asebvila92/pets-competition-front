@@ -13,6 +13,13 @@ const reducerPet = (state = {listPetsOfPerson: [], person:{} }, action) => {
     case "POST_PET_ERROR": {
       return {...state, error: "error de POST"}
     }
+    case "DELETE_PET_SUCCESS": {
+      const newlist = [...state.listPetsOfPerson, action.payload];
+      return {...state, listPetsOfPerson: newlist}
+    }
+    case "DELETE_PET_ERROR": {
+      return {...state, error: "error de DELETE"}
+    }
     default:
       return state;
   }

@@ -14,6 +14,7 @@ import {
   actionDeletePerson,
   actionGetPetsOfPerson,
   actionPostPet,
+  actionDeletePet,
 } from './redux/actions/allActions';
 
 
@@ -35,6 +36,8 @@ class App extends Component{
     this.props.onGetPetsOfPerson(person);
 
     this.props.onPostPet({});
+
+    this.props.onDeletePet({});
     
   }
 
@@ -43,6 +46,8 @@ class App extends Component{
     onPostPerson: PropTypes.func.isRequired,
     onDeletePerson: PropTypes.func.isRequired,
     onGetPetsOfPerson: PropTypes.func.isRequired,
+    onPostPet: PropTypes.func.isRequired,
+    onDeletePet: PropTypes.func.isRequired,
   }
 
 
@@ -74,7 +79,10 @@ class App extends Component{
     },
     onPostPet: (pet) => {
       dispach(actionPostPet(pet));
-  },
+    },
+    onDeletePet: (pet) => {
+      dispach(actionDeletePet(pet));
+    },
 
   }
 }

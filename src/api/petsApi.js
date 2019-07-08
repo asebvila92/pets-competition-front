@@ -15,3 +15,11 @@ export const postPet = (pet) => {
     })
   }, 6000)
 }
+
+export const deletePet = (pet) => {
+  return new Promise((resolve) => {
+    setTimeout(()=>{
+      resolve({data: "OK DeletePet"})
+    })
+  }, 6000)
+}
