@@ -1,4 +1,6 @@
 
+//install axios, import axios.
+
 export const getPersons = () => {
   return new Promise((resolve) => {
     setTimeout(()=>{

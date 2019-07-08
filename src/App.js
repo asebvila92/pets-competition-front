@@ -13,6 +13,7 @@ import {
   actionPostPerson, 
   actionDeletePerson,
 } from './redux/actions/allActions';
+import { actionGetPetsOfPerson } from './redux/actions/actionPets';
 
 class App extends Component{
 
@@ -26,13 +27,18 @@ class App extends Component{
 
     const person = {name: "yo"}
     this.props.onPostPerson(person);
-
     
     this.props.onDeletePerson(person);
+
+    this.props.onGetPetsOfPerson(person);
+    
   }
 
   static propTypes = {
     onGetPersons: PropTypes.func.isRequired,
+    onPostPerson: PropTypes.func.isRequired,
+    onDeletePerson: PropTypes.func.isRequired,
+    onGetPetsOfPerson: PropTypes.func.isRequired,
   }
 
 
@@ -50,22 +56,28 @@ class App extends Component{
 
   const mapDispachToProps = (dispach) => {
   return {
-      onGetPersons: () => {
-        dispach(actionGetPersons());
+    onGetPersons: () => {
+      dispach(actionGetPersons());
     },
-      onPostPerson: (person) => {
-        dispach(actionPostPerson(person));
+    onPostPerson: (person) => {
+      dispach(actionPostPerson(person));
     },
     onDeletePerson: (person) => {
       dispach(actionDeletePerson(person));
-  },
+    },
+    onGetPetsOfPerson: (person) => {
+      dispach(actionGetPetsOfPerson(person))
+    }
+
   }
 }
 
   const mapStateToProps = (store, ownProps) => {
-    console.log(store.reducerPerson.persons); //test promise
+    console.log(store.reducerPet.listPetsOfPerson); //test promise
     return {
       persons: store.reducerPerson.persons,
+      selectedPerson: store.reducerPet.person,
+      petsOfPerson: store.reducerPet.listPetsOfPerson,
     }
   }
 
