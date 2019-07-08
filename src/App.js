@@ -11,6 +11,7 @@ import logo from './logo.svg';
 import {
   actionGetPersons,
   actionPostPerson, 
+  actionDeletePerson,
 } from './redux/actions/allActions';
 
 class App extends Component{
@@ -22,9 +23,12 @@ class App extends Component{
 
   componentDidMount(){
     this.props.onGetPersons();
-    
+
     const person = {name: "yo"}
     this.props.onPostPerson(person);
+
+    
+    this.props.onDeletePerson(person);
   }
 
   static propTypes = {
@@ -52,6 +56,9 @@ class App extends Component{
       onPostPerson: (person) => {
         dispach(actionPostPerson(person));
     },
+    onDeletePerson: (person) => {
+      dispach(actionDeletePerson(person));
+  },
   }
 }
 

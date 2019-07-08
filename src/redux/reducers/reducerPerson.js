@@ -13,6 +13,13 @@ export default function reducerPerson(state = {persons: []}, action){
     case 'POST_PERSON_ERROR': {
       return {...state, error: "error de POST"}
     }
+    case 'DELETE_PERSON_SUCCESS': {
+      const newListPersons = [...state.persons, action.payload]
+      return {...state, persons: newListPersons}
+    }
+    case 'DELETE_PERSON_ERROR': {
+      return {...state, error: "error de DELETE"}
+    }
     default:
       return state;
   }

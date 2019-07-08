@@ -3,6 +3,8 @@ import {
   GET_PERSONS_ERROR,
   POST_PERSON_SUCCESS,
   POST_PERSON_ERROR,
+  DELETE_PERSON_SUCCESS,
+  DELETE_PERSON_ERROR
 } from '../types/allTypes';
 
 
@@ -10,6 +12,7 @@ import {
 import {
   getPersons,
   postPerson,
+  deletePerson,
 } from '../../api/personsApi';
 
 
@@ -49,5 +52,25 @@ export function actionPostPerson(person) {
     );
   };
 }
+
+export function actionDeletePerson(person) {
+  return (dispach) => {
+    return deletePerson(person).then(
+      (response) => {
+        dispach({
+          type: DELETE_PERSON_SUCCESS,
+          payload: response.data,
+        })
+      },
+      (error) => {
+        dispach({
+          type: DELETE_PERSON_ERROR,
+        })
+      }
+    );
+  };
+}
+
+
 
 
