@@ -6,3 +6,11 @@ export const getPersons = () => {
     }, 6000)
   })
 }
+
+export const postPerson = (person) => {
+  return new Promise((resolve) => {
+    setTimeout(()=>{
+      resolve({data:person});
+    }, 6000)
+  })
+}

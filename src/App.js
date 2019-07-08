@@ -9,7 +9,8 @@ import './App.css';
 import logo from './logo.svg';
 
 import {
-  actionGetPersons, 
+  actionGetPersons,
+  actionPostPerson, 
 } from './redux/actions/allActions';
 
 class App extends Component{
@@ -21,6 +22,9 @@ class App extends Component{
 
   componentDidMount(){
     this.props.onGetPersons();
+    
+    const person = {name: "yo"}
+    this.props.onPostPerson(person);
   }
 
   static propTypes = {
@@ -44,6 +48,9 @@ class App extends Component{
   return {
       onGetPersons: () => {
         dispach(actionGetPersons());
+    },
+      onPostPerson: (person) => {
+        dispach(actionPostPerson(person));
     },
   }
 }
