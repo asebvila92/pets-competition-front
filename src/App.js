@@ -12,8 +12,10 @@ import {
   actionGetPersons,
   actionPostPerson, 
   actionDeletePerson,
+  actionGetPetsOfPerson,
+  actionPostPet,
 } from './redux/actions/allActions';
-import { actionGetPetsOfPerson } from './redux/actions/actionPets';
+
 
 class App extends Component{
 
@@ -31,6 +33,8 @@ class App extends Component{
     this.props.onDeletePerson(person);
 
     this.props.onGetPetsOfPerson(person);
+
+    this.props.onPostPet({});
     
   }
 
@@ -67,7 +71,10 @@ class App extends Component{
     },
     onGetPetsOfPerson: (person) => {
       dispach(actionGetPetsOfPerson(person))
-    }
+    },
+    onPostPet: (pet) => {
+      dispach(actionPostPet(pet));
+  },
 
   }
 }

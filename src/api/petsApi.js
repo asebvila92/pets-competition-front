@@ -7,3 +7,11 @@ export const getPetsOfPerson = (person) => {
     })
   }, 6000)
 }
+
+export const postPet = (pet) => {
+  return new Promise((resolve) => {
+    setTimeout(()=>{
+      resolve({data: "OK PostPet"})
+    })
+  }, 6000)
+}
