@@ -1,8 +1,11 @@
 //dependecies
 import React, {Component} from 'react';
-import {withRouter} from 'react-router-dom'; 
+import {withRouter, Route} from 'react-router-dom'; 
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
+
+//Components
+import Home from './pages/Home';
 
 //assets
 import './App.css';
@@ -12,9 +15,12 @@ import {
   actionGetPersons,
   actionPostPerson, 
   actionDeletePerson,
+
   actionGetPetsOfPerson,
   actionPostPet,
   actionDeletePet,
+
+  actionGetCompetitions,
 } from './redux/actions/allActions';
 
 
@@ -38,7 +44,7 @@ class App extends Component{
     this.props.onPostPet({});
 
     this.props.onDeletePet({});
-    
+       
   }
 
   static propTypes = {
@@ -48,6 +54,7 @@ class App extends Component{
     onGetPetsOfPerson: PropTypes.func.isRequired,
     onPostPet: PropTypes.func.isRequired,
     onDeletePet: PropTypes.func.isRequired,
+    onGetCompetitions: PropTypes.func.isRequired,
   }
 
 
@@ -55,8 +62,7 @@ class App extends Component{
   render() {
     return(
       <div className="App">
-        <label>probamos todo desde componentDidMount</label>
-
+        <Route path="/" component={Home}/>
       </div>
     );
   }
@@ -83,16 +89,18 @@ class App extends Component{
     onDeletePet: (pet) => {
       dispach(actionDeletePet(pet));
     },
-
+    onGetCompetitions: () => {
+      dispach(actionGetCompetitions());
+    }
   }
 }
 
   const mapStateToProps = (store, ownProps) => {
-    console.log(store.reducerPet.listPetsOfPerson); //test promise
     return {
       persons: store.reducerPerson.persons,
       selectedPerson: store.reducerPet.person,
       petsOfPerson: store.reducerPet.listPetsOfPerson,
+      competitions: store.reducerCompetition.competitions,
     }
   }
 
