@@ -3,19 +3,12 @@ import PropTypes from 'prop-types';
 import {withRouter} from 'react-router-dom';
 
 import {
-  Icon,
-  Fab,
   Table,
   TableHead,
   TableBody,
   TableCell,
   TableRow,
-  AppBar,
-  Toolbar,
-  Typography,
   Button,
-  IconButton,
-  Container,
 } from '@material-ui/core';
 
 
@@ -32,12 +25,13 @@ class Home extends Component{
 
   static propTypes = {
     onPostPetOfPerson: PropTypes.func.isRequired,
-    selectedPerson: PropTypes.object.isRequired,
+    people: PropTypes.array.isRequired,
     petsOfPerson: PropTypes.array.isRequired,
   }
   
   render() {
-    const {selectedPerson, petsOfPerson} = this.props;
+    const {people, petsOfPerson, match} = this.props;
+    const selectedPerson = people.find((person)=>String(person.id) === match.params.id)
     return(
       <div className="Home">
           
@@ -45,7 +39,7 @@ class Home extends Component{
             <div className="person">
               <div className="image">
               </div>
-              <label></label>
+              <label>{selectedPerson.name}</label>
             </div>
             <div className="pets">
               <div className="title">

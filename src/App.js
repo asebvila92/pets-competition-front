@@ -21,6 +21,7 @@ import {
   actionDeletePet,
   actionGetCompetitions,
 } from './redux/actions/allActions';
+import { CircularProgress } from '@material-ui/core';
 
 
 class App extends Component{
@@ -58,19 +59,25 @@ class App extends Component{
   }  
 
   render() {
+    const { isLoaded } = this.props;
     return(
       <div className="App">
-        <Header />
-        <Route exact path="/" render = {() => (
-          <ListPeople people={this.props.people} onSelectPerson={this.handleSelectPerson} />
-        )} />
-        <Route path="/Home" render= {() => (
-          <Home 
-            onGetPetsOfPerson={this.handlePostPetOfPerson} 
-            selectedPerson={this.state.selectedPerson} 
-            petsOfPerson={this.props.petsOfPerson}
-          />
-        )} />
+        {isLoaded && (
+          <div>
+            <Header />
+            <Route exact path="/" render = {() => (
+              <ListPeople people={this.props.people} onSelectPerson={this.handleSelectPerson} />
+            )} />
+            <Route path="/Home/:id" render= {() => (
+              <Home 
+                onGetPetsOfPerson={this.handlePostPetOfPerson} 
+                people={this.props.people} 
+                petsOfPerson={this.props.petsOfPerson}
+              />
+            )} />
+          </div>
+        )}
+        {!isLoaded && <CircularProgress/>}
       </div>
     );
   }
@@ -106,6 +113,7 @@ const mapDispachToProps = (dispach) => {
 const mapStateToProps = (store) => {
   return {
     people: store.reducerPeople.people,
+    isLoaded: store.reducerPeople.isLoaded,
     selectedPerson: store.reducerPet.person,
     petsOfPerson: store.reducerPet.listPetsOfPerson,
     competitions: store.reducerCompetition.competitions,

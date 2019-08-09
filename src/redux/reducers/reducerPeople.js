@@ -1,7 +1,7 @@
-export default function reducerPeople(state = {people: []}, action){
+export default function reducerPeople(state = {people: [], isLoaded: false}, action){
   switch(action.type){
     case 'GET_PERSONS_SUCCESS': {
-      return {...state, people: action.payload}
+      return {...state, people: action.payload, isLoaded: true}
     }
     case 'GET_PERSONS_ERROR': {
       return {...state, error: "error de GET"}

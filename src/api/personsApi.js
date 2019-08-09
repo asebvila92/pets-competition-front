@@ -9,11 +9,12 @@ export const getPersons = () => {
             {
               name: "Andres",
               surname: "Vila",
+              id: 1,
             }
           ]
         }
       );
-    }, 6000)
+    }, 5000)
   })
 }
 
