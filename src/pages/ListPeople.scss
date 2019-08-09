@@ -4,4 +4,11 @@
   background-color:rgb(218, 222, 252);
   padding: 40px;
   padding-top: 64px;
+  align-items: center;
+  justify-content: center;
+    
+    .people-table{
+      display: flex;
+      width: 50%;
+    }
 }

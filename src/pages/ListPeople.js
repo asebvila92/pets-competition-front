@@ -1,9 +1,18 @@
 import React,{Component} from 'react';
-import {Route, withRouter} from 'react-router-dom';
+import {withRouter, Link as RouterLink} from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 //assets
 import './ListPeople.scss';
+
+import {
+  Link,
+  Table,
+  TableHead,
+  TableBody,
+  TableCell,
+  TableRow,
+} from '@material-ui/core';
 
 
 class List extends Component{
@@ -19,23 +28,26 @@ class List extends Component{
     
     return(
       <div className="ListPeople">
-          <h2>Personas Ingresadas</h2>
-          <table>
-            <tbody>
-              <tr>
-                <th>Nombre</th>
-                <th>Apellido</th>
-                <th></th>
-              </tr>
+        <h1>People</h1>
+        <div className="people-table">
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell><strong>Name</strong></TableCell>
+                <TableCell><strong>Surname</strong></TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
               {people.map((p,key) => (
-                <tr key={key}>
-                  <td>{p.name}</td>
-                  <td>{p.surname}</td>
-                  <td><button onClick={() => onSelectPerson(p)}>Select</button></td>
-                </tr>
+                <TableRow key={key}>
+                  <TableCell>{p.name}</TableCell>
+                  <TableCell>{p.surname}</TableCell>
+                  <TableCell><Link component={RouterLink} to ={`/Home/${p.id}`} onClick={() => onSelectPerson(p)}>Select</Link></TableCell>
+                </TableRow>
               ))}
-            </tbody>
-          </table>
+            </TableBody>
+          </Table>
+        </div>
       </div>
     );
   }
