@@ -19,7 +19,6 @@ import './Home.scss';
 class Home extends Component{
 
   static propTypes = {
-    onPostPetOfPerson: PropTypes.func.isRequired,
     people: PropTypes.array.isRequired,
     petsOfPerson: PropTypes.array.isRequired,
     onGetPetsOfPerson: PropTypes.func.isRequired,
@@ -37,7 +36,7 @@ class Home extends Component{
   
   render() {
     const {people, petsOfPerson, match} = this.props;
-    const selectedPerson = people.find((person)=>String(person.id) === match.params.id)
+    const selectedPerson = people.find((person)=>String(person.code) === match.params.id)
     return(
       <div className="Home">
           
@@ -77,7 +76,12 @@ class Home extends Component{
           <div className='event'>
             <h1>event in Latu Dogs and Cats</h1>
             <p>
-              fdasfdsafsdfafdasdfa dfa fdaf dagadsga gdagda adagda dafad 
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
+            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure 
+            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit 
+            anim id est laborum 
             </p>
             <div className="enroll">
             <Button color="secondary">ENROLL</Button>
@@ -86,7 +90,12 @@ class Home extends Component{
           <div className='event'>
             <h1>event in Latu Dogs and Cats</h1>
             <p>
-              fdasfdsafsdfafdasdfa dfa fdaf dagadsga gdagda adagda dafad 
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
+            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure 
+            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit 
+            anim id est laborum 
             </p>
             <div className="enroll">
             <Button color="secondary">ENROLL</Button>
@@ -95,7 +104,12 @@ class Home extends Component{
           <div className='event'>
             <h1>event in Latu Dogs and Cats</h1>
             <p>
-              fdasfdsafsdfafdasdfa dfa fdaf dagadsga gdagda adagda dafad 
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
+            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure 
+            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit 
+            anim id est laborum  
             </p>
             <div className="enroll">
               <Button color="secondary">ENROLL</Button>

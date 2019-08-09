@@ -19,12 +19,11 @@ class List extends Component{
 
   static propTypes = {
     people : PropTypes.array.isRequired,
-    onSelectPerson: PropTypes.func.isRequired,
     history: PropTypes.object,
   }
   
   render(){
-    const {people, onSelectPerson} = this.props;
+    const {people} = this.props;
     
     return(
       <div className="ListPeople">
@@ -42,7 +41,7 @@ class List extends Component{
                 <TableRow key={key}>
                   <TableCell>{p.name}</TableCell>
                   <TableCell>{p.surname}</TableCell>
-                  <TableCell><Link component={RouterLink} to ={`/Home/${p.id}`} onClick={() => onSelectPerson(p)}>Select</Link></TableCell>
+                  <TableCell><Link component={RouterLink} to ={`/Home/${p.code}`}>Select</Link></TableCell>
                 </TableRow>
               ))}
             </TableBody>
