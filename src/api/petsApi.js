@@ -1,22 +1,7 @@
-
+import axios from 'axios';
 
 export const getPetsOfPerson = (person) => {
-  return new Promise((resolve) => {
-    setTimeout(()=>{
-      resolve({
-        data:[
-          {
-            name: "lu",
-            type: "cat",
-          },
-          {
-            name: "re",
-            type: "dog",
-          }
-        ]
-      })
-    })
-  }, 6000)
+  return axios.get("http://localhost:4881/api/pets");
 }
 
 export const postPet = (pet) => {

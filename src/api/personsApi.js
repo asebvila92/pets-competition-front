@@ -1,21 +1,8 @@
 
-//install axios, import axios.
+import axios from 'axios';
 
 export const getPersons = () => {
-  return new Promise((resolve) => {
-    setTimeout(()=>{
-        resolve({
-          data: [
-            {
-              name: "Andres",
-              surname: "Vila",
-              id: 1,
-            }
-          ]
-        }
-      );
-    }, 5000)
-  })
+  return axios.get("http://localhost:4881/api/people");
 }
 
 export const postPerson = (person) => {
