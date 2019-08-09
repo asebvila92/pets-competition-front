@@ -1,0 +1,66 @@
+.Home{
+  display: flex;
+  background-color:rgb(218, 222, 252);
+  padding: 40px;
+  padding-top: 64px;
+  .profile{
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    background-color: #f5f5f5;
+    margin-top: 15px;
+    border-radius: 10px;
+    margin-right: 15px;
+    padding: 15px;
+    .person{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .image{
+        width: 128px;
+        height: 128px;
+        display: flex;
+        border-color: rgb(182, 177, 177);
+        border-radius: 80px;
+        border-style: solid;
+        background-image: url("../img/user.gif");
+        background-repeat: no-repeat;
+      }
+      label{
+        text-align: left;
+      }
+    }
+    .pets{
+      display: flex;
+      flex-direction: column;
+      .title{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 14px;
+        button{
+          font-size: 25px;
+        }
+      }
+    }
+  }
+  .info{
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(218, 222, 252);
+    flex-grow: 1;
+    .event{
+      display: flex;
+      flex-direction: column;
+      border-color: #f5f5f5;
+      background-color: #f5f5f5;
+      border-radius: 10px;
+      border-style: solid;
+      margin-top: 15px;
+      .enroll{
+        display: flex;
+        align-self: flex-end;
+      }
+    }
+  }
+}

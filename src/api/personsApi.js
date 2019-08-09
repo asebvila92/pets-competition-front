@@ -4,7 +4,15 @@
 export const getPersons = () => {
   return new Promise((resolve) => {
     setTimeout(()=>{
-      resolve({data:"OK Get"});
+        resolve({
+          data: [
+            {
+              name: "Andres",
+              surname: "Vila",
+            }
+          ]
+        }
+      );
     }, 6000)
   })
 }

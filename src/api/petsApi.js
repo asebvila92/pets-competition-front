@@ -3,7 +3,18 @@
 export const getPetsOfPerson = (person) => {
   return new Promise((resolve) => {
     setTimeout(()=>{
-      resolve({data: "OK GetPets"})
+      resolve({
+        data:[
+          {
+            name: "lu",
+            type: "cat",
+          },
+          {
+            name: "re",
+            type: "dog",
+          }
+        ]
+      })
     })
   }, 6000)
 }
