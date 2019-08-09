@@ -18,15 +18,21 @@ import './Home.scss';
 
 class Home extends Component{
 
+  static propTypes = {
+    onPostPetOfPerson: PropTypes.func.isRequired,
+    people: PropTypes.array.isRequired,
+    petsOfPerson: PropTypes.array.isRequired,
+    onGetPetsOfPerson: PropTypes.func.isRequired,
+  }
+
   constructor (props) {
     super(props);
     this.state = {};
   }
 
-  static propTypes = {
-    onPostPetOfPerson: PropTypes.func.isRequired,
-    people: PropTypes.array.isRequired,
-    petsOfPerson: PropTypes.array.isRequired,
+  componentDidMount() {
+    const {match, onGetPetsOfPerson} = this.props;
+    onGetPetsOfPerson(match.params.id);
   }
   
   render() {
@@ -50,23 +56,17 @@ class Home extends Component{
                 <Table>
                   <TableHead>
                     <TableRow>
-                      <TableCell><strong>name</strong></TableCell>
-                      <TableCell><strong>type</strong></TableCell>
+                      <TableCell><strong>Name</strong></TableCell>
+                      <TableCell><strong>Type</strong></TableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    <TableRow>
-                      <TableCell>Eros</TableCell>
-                      <TableCell>Cat</TableCell>
-                    </TableRow>
-                    <TableRow>
-                      <TableCell>Zeus</TableCell>
-                      <TableCell>Cat</TableCell>
-                    </TableRow>
-                    <TableRow>
-                      <TableCell>Luana</TableCell>
-                      <TableCell>Dog</TableCell>
-                    </TableRow>
+                    {petsOfPerson.map((p,key) => (
+                      <TableRow key={key}>
+                        <TableCell>{p.name}</TableCell>
+                        <TableCell>{p.type}</TableCell>
+                      </TableRow>
+                    ))}
                   </TableBody>
                 </Table>
               </div>

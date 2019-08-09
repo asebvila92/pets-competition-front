@@ -50,13 +50,7 @@ class App extends Component{
 
   handlePostPetOfPerson = (pet) => {
     this.props.onPostPet(pet)
-  }
-
-  handleSelectPerson = (p) => {
-    this.setState({selectedPerson: p});
-    this.props.onGetPetsOfPerson(p);
-    this.props.history.push("/Home");
-  }  
+  } 
 
   render() {
     const { isLoaded } = this.props;
@@ -66,11 +60,11 @@ class App extends Component{
           <div>
             <Header />
             <Route exact path="/" render = {() => (
-              <ListPeople people={this.props.people} onSelectPerson={this.handleSelectPerson} />
+              <ListPeople people={this.props.people} />
             )} />
             <Route path="/Home/:id" render= {() => (
               <Home 
-                onGetPetsOfPerson={this.handlePostPetOfPerson} 
+                onGetPetsOfPerson={this.props.onGetPetsOfPerson} 
                 people={this.props.people} 
                 petsOfPerson={this.props.petsOfPerson}
               />
