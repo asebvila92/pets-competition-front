@@ -2,12 +2,12 @@
 import {combineReducers} from 'redux';
 
 //reducers
-import reducerPerson from './reducerPerson';
+import reducerPeople from './reducerPeople';
 import reducerPet from './reducerPet';
 import reducerCompetition from './reducerCompetition';
 
 const reducer = combineReducers({
-  reducerPerson,
+  reducerPeople,
   reducerPet,
   reducerCompetition,
 })
