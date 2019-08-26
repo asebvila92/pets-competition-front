@@ -1,8 +1,8 @@
 //dependecies
-import React, {Component} from 'react';
-import {withRouter, Route} from 'react-router-dom'; 
+import React, { Component } from 'react';
+import { withRouter, Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
 //Components
 import Home from './pages/Home';
@@ -14,7 +14,7 @@ import './App.scss';
 
 import {
   actionGetPersons,
-  actionPostPerson, 
+  actionPostPerson,
   actionDeletePerson,
   actionGetPetsOfPerson,
   actionPostPet,
@@ -23,21 +23,16 @@ import {
 } from './redux/actions/allActions';
 import { CircularProgress } from '@material-ui/core';
 
-
-class App extends Component{
-
+class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       selectedPerson: null,
-    }
-  }
-
-  componentDidMount(){
-    this.props.onGetPersons();
+    };
   }
 
   static propTypes = {
+    history: PropTypes.object,
     persons: PropTypes.array,
     onGetPersons: PropTypes.func.isRequired,
     onPostPerson: PropTypes.func.isRequired,
@@ -46,72 +41,95 @@ class App extends Component{
     onPostPet: PropTypes.func.isRequired,
     onDeletePet: PropTypes.func.isRequired,
     onGetCompetitions: PropTypes.func.isRequired,
+  };
+
+  componentDidMount() {
+    this.props.onGetPersons();
   }
 
-  handlePostPetOfPerson = (pet) => {
-    this.props.onPostPet(pet)
-  } 
+  handlePostPetOfPerson = pet => {
+    this.props.onPostPet(pet);
+  };
+
+  handlePostPerson = person => {
+    this.props.onPostPerson(person);
+  };
 
   render() {
     const { isLoaded } = this.props;
-    return(
+    return (
       <div className="App">
         {isLoaded && (
           <div>
             <Header />
-            <Route exact path="/" render = {() => (
-              <ListPeople people={this.props.people} />
-            )} />
-            <Route path="/Home/:id" render= {() => (
-              <Home 
-                onGetPetsOfPerson={this.props.onGetPetsOfPerson} 
-                people={this.props.people} 
-                petsOfPerson={this.props.petsOfPerson}
-              />
-            )} />
+            <Route
+              exact
+              path="/"
+              render={() => (
+                <ListPeople
+                  people={this.props.people}
+                  onPostPerson={this.handlePostPerson}
+                />
+              )}
+            />
+            <Route
+              path="/Home/:id"
+              render={() => (
+                <Home
+                  onGetPetsOfPerson={this.props.onGetPetsOfPerson}
+                  people={this.props.people}
+                  petsOfPerson={this.props.petsOfPerson}
+                  onPostPet={this.props.onPostPet}
+                />
+              )}
+            />
           </div>
         )}
-        {!isLoaded && <CircularProgress/>}
+        {!isLoaded && <CircularProgress />}
       </div>
     );
   }
-
 } //end of component.
 
-const mapDispachToProps = (dispach) => {
+const mapDispachToProps = dispach => {
   return {
     onGetPersons: () => {
       dispach(actionGetPersons());
     },
-    onPostPerson: (person) => {
+    onPostPerson: person => {
       dispach(actionPostPerson(person));
     },
-    onDeletePerson: (person) => {
+    onDeletePerson: person => {
       dispach(actionDeletePerson(person));
     },
-    onGetPetsOfPerson: (person) => {
-      dispach(actionGetPetsOfPerson(person))
+    onGetPetsOfPerson: person => {
+      dispach(actionGetPetsOfPerson(person));
     },
-    onPostPet: (pet) => {
+    onPostPet: pet => {
       dispach(actionPostPet(pet));
     },
-    onDeletePet: (pet) => {
+    onDeletePet: pet => {
       dispach(actionDeletePet(pet));
     },
     onGetCompetitions: () => {
       dispach(actionGetCompetitions());
-    }
-  }
-}
+    },
+  };
+};
 
-const mapStateToProps = (store) => {
+const mapStateToProps = store => {
   return {
     people: store.reducerPeople.people,
     isLoaded: store.reducerPeople.isLoaded,
     selectedPerson: store.reducerPet.person,
     petsOfPerson: store.reducerPet.listPetsOfPerson,
     competitions: store.reducerCompetition.competitions,
-  }
-}
+  };
+};
 
-export default withRouter(connect(mapStateToProps,mapDispachToProps)(App));
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispachToProps,
+  )(App),
+);

@@ -1,27 +1,29 @@
-export default function reducerPeople(state = {people: [], isLoaded: false}, action){
-  switch(action.type){
+export default function reducerPeople(
+  state = { people: [], isLoaded: false },
+  action,
+) {
+  switch (action.type) {
     case 'GET_PERSONS_SUCCESS': {
-      return {...state, people: action.payload, isLoaded: true}
+      return { ...state, people: action.payload, isLoaded: true };
     }
     case 'GET_PERSONS_ERROR': {
-      return {...state, error: "error de GET"}
+      return { ...state, error: 'error de GET' };
     }
     case 'POST_PERSON_SUCCESS': {
-      const newListPeople = [...state.people, action.payload];
-      return {...state, people: newListPeople}
+      const newListPeople = action.payload;
+      return { ...state, people: newListPeople };
     }
     case 'POST_PERSON_ERROR': {
-      return {...state, error: "error de POST"}
+      return { ...state, error: 'error de POST' };
     }
     case 'DELETE_PERSON_SUCCESS': {
-      const newListPeople = [...state.people, action.payload]
-      return {...state, people: newListPeople}
+      const newListPeople = [...state.people, action.payload];
+      return { ...state, people: newListPeople };
     }
     case 'DELETE_PERSON_ERROR': {
-      return {...state, error: "error de DELETE"}
+      return { ...state, error: 'error de DELETE' };
     }
     default:
       return state;
   }
 }
-  

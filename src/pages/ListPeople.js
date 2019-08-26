@@ -5,8 +5,12 @@ import PropTypes from 'prop-types';
 //assets
 import './ListPeople.scss';
 
+//components
+import DialogAddPerson from '../components/DialogAddPerson';
+
 import {
   Link,
+  Button,
   Table,
   TableHead,
   TableBody,
@@ -19,6 +23,7 @@ class List extends Component{
 
   static propTypes = {
     people : PropTypes.array.isRequired,
+    onPostPerson: PropTypes.func.isRequired,
     history: PropTypes.object,
   }
   
@@ -28,6 +33,7 @@ class List extends Component{
     return(
       <div className="ListPeople">
         <h1>People</h1>
+        <DialogAddPerson onPostPerson={this.props.onPostPerson}/>
         <div className="people-table">
           <Table>
             <TableHead>
@@ -41,7 +47,7 @@ class List extends Component{
                 <TableRow key={key}>
                   <TableCell>{p.name}</TableCell>
                   <TableCell>{p.surname}</TableCell>
-                  <TableCell><Link component={RouterLink} to ={`/Home/${p.code}`}>Select</Link></TableCell>
+                  <TableCell><Link component={RouterLink} to ={`/Home/${p._id}`}>Select</Link></TableCell>
                 </TableRow>
               ))}
             </TableBody>
