@@ -32,7 +32,6 @@ class App extends Component {
   }
 
   static propTypes = {
-    history: PropTypes.object,
     persons: PropTypes.array,
     onGetPersons: PropTypes.func.isRequired,
     onPostPerson: PropTypes.func.isRequired,

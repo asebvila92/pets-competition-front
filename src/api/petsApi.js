@@ -5,11 +5,7 @@ export const getPetsOfPerson = personId => {
 };
 
 export const postPet = pet => {
-  return new Promise(resolve => {
-    setTimeout(() => {
-      resolve({ data: 'OK PostPet' });
-    });
-  }, 6000);
+  return axios.post('http://localhost:4881/api/pets/', pet);
 };
 
 export const deletePet = pet => {

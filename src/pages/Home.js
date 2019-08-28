@@ -9,9 +9,11 @@ import {
   TableCell,
   TableRow,
   Button,
+  Icon,
   Tooltip,
 } from '@material-ui/core';
 
+import DialogAddPet from '../components/DialogAddPet';
 //assets
 import './Home.scss';
 
@@ -25,7 +27,13 @@ class Home extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {};
+    const { match, people } = props;
+    const selectedPerson = people.find(
+      person => String(person._id) === match.params.id,
+    );
+    this.state = {
+      selectedPerson: selectedPerson,
+    };
   }
 
   componentDidMount() {
@@ -34,25 +42,27 @@ class Home extends Component {
   }
 
   render() {
-    const { people, petsOfPerson, match } = this.props;
-    const selectedPerson = people.find(
-      person => String(person._id) === match.params.id,
-    );
+    const { petsOfPerson, onPostPet } = this.props;
+
     return (
       <div className="Home">
         <div className="profile">
           <div className="person">
             <div className="image" />
-            <label>{selectedPerson.name}</label>
+            <label>{this.state.selectedPerson.name}</label>
           </div>
           <div className="pets">
             <div className="title">
               <h1>Pets</h1>
-              <Tooltip title="this function is in construction">
-                <Button color="secondary" size="large">
-                  +
+              <Tooltip title="function in construction">
+                <Button>
+                  <Icon>edit</Icon>
                 </Button>
               </Tooltip>
+              <DialogAddPet
+                onPostPet={onPostPet}
+                selectedPerson={this.state.selectedPerson}
+              />
             </div>
             <div className="list-pets">
               <Table>
